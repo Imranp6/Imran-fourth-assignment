@@ -161,6 +161,39 @@ rejectedBtn.addEventListener("click", function () {
 
 // EVENT DELEGATION
 
+allCardSection.addEventListener("click", function (event) {
+
+  const button = event.target.closest("button");
+  if (!button) return;
+
+  const card = button.closest(".job-card");
+  if (!card) return;
+
+  const id = card.dataset.id;
+  const job = jobs.find(j => j.id === id);
+
+  if (!job) return;
+
+  // Interview Toggle
+  if (button.classList.contains("interview-btn")) {
+    job.status = job.status === "interview" ? "all" : "interview";
+    renderCards();
+  }
+
+  // Rejected Toggle
+  if (button.classList.contains("rejected-btn")) {
+    job.status = job.status === "rejected" ? "all" : "rejected";
+    renderCards();
+  }
+
+  // Delete
+  if (button.classList.contains("delete-btn")) {
+    card.remove();
+    jobs = jobs.filter(j => j.id !== id);
+    renderCards();
+  }
+
+});
 
 
 
