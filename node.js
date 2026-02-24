@@ -1,6 +1,3 @@
-
-
-
 //  job section 
 
 let jobs = [
